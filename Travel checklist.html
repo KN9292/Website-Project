@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Packing List</title>
+    <style>
+        body {
+            background-color: #F2E4D8;
+            color: #F24738;
+            font-size: 20px;
+            font-family: 'Arial';
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+        }
+        .left-column {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 60px;
+            color: #F24738;
+            font-size: 70px;
+            font-family: 'Stigsa Display Medium Expanded';
+            font-weight: 400;
+            flex: 1; /* Take up remaining space */
+        
+        }
+        .saved-checklists-container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            width: 45%;
+            position: absolute;
+            top: 130px; /* Adjust the top distance from the top of the left-column */
+            right: 20px; /* Adjust the right distance from the right of the left-column */
+            text-align: right;
+}
+
+        .saved-checklists-container h2 {
+            font-size: 24px;
+            color: #F24738;
+            font-family: 'Stigsa Display Medium Expanded';
+            margin-bottom: 10px;
+        }
+        .saved-checklists-container ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+}
+
+        .saved-checklists-container li {
+            cursor: pointer;
+            margin-bottom: 10px;
+            padding: 10px; /* Adjust padding for better spacing */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .saved-checklists-container li:hover {
+            background-color: #f2e4d8;
+        }
+        
+        .pre-made-categories-container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: transparent;
+            border: none;
+            border-radius: 10px;
+            width: 45%;
+            position: absolute;
+            top: 460px; /* Adjust the top distance from the top of the left-column */
+            right: 20px; /* Adjust the right distance from the right of the left-column */
+            text-align: right;
+        }
+        .pre-made-categories-container h2 {
+            font-size: 24px;
+            color: #F24738;
+            font-family: 'Stigsa Display Medium Expanded';
+            margin-bottom: 10px;
+        }
+        .pre-made-categories-container ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .pre-made-categories-container li {
+            cursor: pointer;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .pre-made-categories-container li:hover {
+            background-color: #f2e4d8;
+        }
+ 
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 55%; /* Adjust width as needed */
+            
+        }
+        .checklist-container {
+            width: 200%;
+            max-width: 600px;
+            margin-left: 24px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 20px;
+          
+        }
+        .add-item-container,
+        .save-checklist-container {
+            display: flex;
+            margin: 0 auto;
+            max-width: 200%;
+            padding: 20px;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .add-item-container input[type="text"],
+        .save-checklist-container input[type='text'] {
+            flex-grow: 1;
+            margin-right: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .add-item-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #F24738;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .checklist-container ul,
+        .removed-items-container ul,
+        .saved-checklist-container ul, {
+            list-style-type: none;
+            padding: 10px;
+        }
+        .saved-checklist-container {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color:transparent;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .checklist-container li {
+            margin-bottom: 15px;
+            font-size: 18px;
+            position: relative;
+            padding-right: 110px;
+        }
+        .checklist-container label {
+            margin-left: 10px;
+        }
+        
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            margin-right: 10px;
+        }
+        .styled-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #F24738;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+        .styled-button:hover {
+        background-color: #d1362c; /* Darken color on hover */
+        }
+
+        .styled-button:active {
+        background-color: #b82b24; /* Further darken color on click */
+        }
+
+        .switch {
+            position: absolute;
+            left: 430px;
+            right: 0;
+            display: inline-block;
+            width: 58px;
+            height: 15px;
+        }
+        .switch input {
+            display: none;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 9px;
+            width: 9px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #F24738;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .switch-label {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .opt-out-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            margin-right: 4px;
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+            display: inline-block;
+        }
+        .removed {
+            text-decoration: line-through;
+            color: #999;
+        }
+        .remove-box {
+            position: absolute;
+            top: 0;
+            right: -100px;
+            width: 200px;
+            height: 100%;
+            background-color: #f00;
+            transition: right 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 0 10px 10px 0;
+            padding-right: 10px;
+        }
+        li.removed label {
+            margin-left: 10px;
+        }
+        .added {
+            color: #0F9D58;
+        }
+        .removed-items-container {
+            width: 200%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .removed-items-container h2 {
+            font-size: 24px;
+            color: #F24738;
+            font-family: 'Stigsa Display Medium Expanded';
+            margin-bottom: 10px;
+        }
+        
+        .removed-items-container li {
+            margin-bottom: 10px;
+            font-size: 18px;
+            position: relative;
+        }
+        .removed-items-container .switch-label {
+            font-size: 12px;
+            color: #666;
+            margin-left: 5px;
+        }
+        .removed-items-container .opt-out-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: calc(100% + 10px);
+            margin-right: 10px;
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+        }
+       
+        .saved-checklists-container .delete-checklist-btn {
+            display: none; /* Initially hide the delete button */
+        }
+      
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="left-column">
+            <h1>Travel Checklist</h1>
+            <div class="checklist-container">
+                <div class="add-item-container">
+                    <input type="text" id="new-item" placeholder="New item">
+                    <button id="add-item-btn" class="styled-button">Add Item</button>
+                </div>
+                <ul id="sortable">
+                    <li>
+                        <input type="checkbox" id="item1">
+                        <label for="item1">Contact lenses</label>
+                        <label class="switch">
+                            <input type="checkbox" class="remove-switch">
+                            <span class="slider"></span>
+                            <span class="opt-out-label">Opt out</span>
+                        </label>
+                        <span class="switch-label" data-on="Yes" data-off="No"></span>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="item2">
+                        <label for="item2">Eye glasses</label>
+                        <label class="switch">
+                            <input type="checkbox" class="remove-switch">
+                            <span class="slider"></span>
+                            <span class="opt-out-label">Opt out</span>
+                        </label>
+                        <span class="switch-label" data-on="Yes" data-off="No"></span>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="item3">
+                        <label for="item3">Sunglasses</label>
+                        <label class="switch">
+                            <input type="checkbox" class="remove-switch">
+                            <span class="slider"></span>
+                            <span class="opt-out-label">Opt out</span>
+                        </label>
+                        <span class="switch-label" data-on="Yes" data-off="No"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="saved-checklists-container">
+                <h2>Saved Checklists</h2>
+                <ul id="saved-checklists">
+                </ul>
+            </div>
+            <div class="pre-made-categories-container">
+                <h2>Pre-made Categories</h2>
+            <ul>
+                <!-- Add your pre-made categories here -->
+                <li>Category 1</li>
+                <li>Category 2</li>
+                <li>Category 3</li>
+               </ul> 
+            </div>              
+        </div>
+        <div class="removed-items-container">
+            <h2>Removed Items</h2>
+            <ul id="removed-sortable"></ul>
+        </div>
+        <div class="save-checklist-container">
+            <input type="text" id="checklist-name" placeholder="Checklist name">
+            <button id="save-checklist-btn" class="styled-button">Save Checklist</button>
+        </div>
+    </div>
+</div>    
+</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+
+            function updateSwitchColor(el) {
+                var slider = $(el).siblings('.slider');
+                if ($(el).is(':checked')) {
+                    slider.css('background-color', '#F24738');
+                } else {
+                    slider.css('background-color', '#ccc');
+                }
+            }
+
+             // Function to display saved checklists from localStorage
+            function displaySavedChecklists() {
+                var savedChecklists = JSON.parse(localStorage.getItem("savedChecklists")) || [];
+                var savedChecklistsList = $("#saved-checklists");
+                savedChecklistsList.empty();
+                savedChecklists.forEach(function(checklist, index) {
+                    var li = $("<li>").text(checklist.name).data("index", index);
+                    var deleteBtn = $("<button>").addClass("delete-checklist-btn").text("Delete");
+                    li.append(deleteBtn); // Append delete button to each checklist item
+                    savedChecklistsList.append(li);
+                });
+         }
+            // Event handler to toggle delete button visibility on checklist item click
+            $('#saved-checklists').on('click', 'li', function() {
+                $(this).find('.delete-checklist-btn').toggle();
+            });
+
+            // Event handler to handle delete button click
+            $('#saved-checklists').on('click', '.delete-checklist-btn', function(event) {
+                event.stopPropagation(); // Prevent li click event from firing
+            
+                var index = $(this).closest('li').data('index'); // Get index of checklist item
+                var savedChecklists = JSON.parse(localStorage.getItem("savedChecklists")) || [];
+
+                // Remove checklist item from array
+                savedChecklists.splice(index, 1);
+
+                // Update localStorage with modified array
+                localStorage.setItem("savedChecklists", JSON.stringify(savedChecklists));
+                
+                // Re-display updated checklists
+                displaySavedChecklists();
+            });
+
+
+            function saveChecklist() {
+                var checklistName = $("#checklist-name").val().trim();
+                if (checklistName === "") {
+                    alert("Please enter a checklist name.");
+                    return;
+                }
+
+                var checklistItems = [];
+                $("#sortable li").each(function() {
+                    var item = $(this).find("label:first").text().trim();
+                    var removed = $(this).hasClass("removed");
+                    checklistItems.push({ item: item, removed: removed });
+                });
+
+                var savedChecklists = JSON.parse(localStorage.getItem("savedChecklists")) || [];
+                savedChecklists.push({ name: checklistName, items: checklistItems });
+                localStorage.setItem("savedChecklists", JSON.stringify(savedChecklists));
+
+                $("#checklist-name").val("");
+                displaySavedChecklists();
+            }
+
+           
+            function loadChecklist(index) {
+                var savedChecklists = JSON.parse(localStorage.getItem("savedChecklists")) || [];
+                var checklist = savedChecklists[index];
+
+                $("#sortable").empty();
+                $("#removed-sortable").empty();
+
+                checklist.items.forEach(function(item) {
+                    var li = $(
+                        '<li>' +
+                        '<input type="checkbox">' +
+                        '<label>&nbsp;' + item.item + '</label>' +
+                        '<label class="switch">' +
+                        '<input type="checkbox" class="remove-switch">' +
+                        '<span class="slider"></span>' +
+                        '<span class="opt-out-label">Opt out</span>' +
+                        '</label>' +
+                        '<span class="switch-label" data-on="Yes" data-off="No"></span>' +
+                        '</li>'
+                    );
+
+                    if (item.removed) {
+                        li.addClass("removed");
+                        li.appendTo("#removed-sortable");
+                    } else {
+                        li.appendTo("#sortable");
+                    }
+                });
+            }
+
+            $("#add-item-btn").click(function() {
+    var newItemText = $("#new-item").val().trim();
+    if (newItemText !== "") {
+        var newItem = $(
+            '<li>' +
+            '<input type="checkbox">' +
+            '<label>&nbsp;' + newItemText + '</label>' +
+            '<label class="switch">' +
+            '<input type="checkbox" class="remove-switch">' +
+            '<span class="slider"></span>' +
+            '<span class="opt-out-label">Opt out</span>' +
+            '</label>' +
+            '<span class="switch-label" data-on="Yes" data-off="No"></span>' +
+            '</li>'
+        ).hide().appendTo("#sortable").fadeIn('fast');
+
+        // Toggle Opt out label visibility
+        newItem.find('.remove-switch').change(function() {
+            var item = $(this).closest('li');
+
+            if ($(this).is(':checked')) {
+                item.addClass('removed');
+                item.find('.opt-out-label').hide(); // Hide the Opt out label
+                item.appendTo("#removed-sortable").fadeIn('fast');
+            } else {
+                item.removeClass('removed');
+                item.find('.opt-out-label').show(); // Show the Opt out label
+                item.appendTo("#sortable").fadeIn('fast');
+            }
+            updateSwitchColor(this);
+        });
+
+        $("#new-item").val("");
+    }
+});
+$("#sortable, #removed-sortable").on("change", "li .remove-switch", function() {
+    var item = $(this).closest('li');
+    if ($(this).is(':checked')) {
+        item.addClass('removed');
+        item.find('.opt-out-label').hide(); // Hide the Opt out label
+        item.appendTo("#removed-sortable");
+    } else {
+        item.removeClass('removed');
+        item.find('.opt-out-label').show(); // Show the Opt out label
+        item.appendTo("#sortable");
+    }
+    updateSwitchColor(this);
+});
+            $("#save-checklist-btn").click(saveChecklist);
+
+            $("#saved-checklists").on("click", "li", function() {
+                var index = $(this).data("index");
+                loadChecklist(index);
+            });
+
+            $("#sortable, #removed-sortable").on("change", "li .remove-switch", function() {
+                var item = $(this).closest('li');
+                if ($(this).is(':checked')) {
+                    item.addClass('removed');
+                    item.appendTo("#removed-sortable");
+                } else {
+                    item.removeClass('removed');
+                    item.appendTo("#sortable");
+                }
+                updateSwitchColor(this);
+            });
+
+            displaySavedChecklists();
+        });
+    </script>
+</html>
