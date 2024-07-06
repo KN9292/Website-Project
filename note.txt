@@ -1,0 +1,105 @@
+body {
+        /*CSS rules that will be applied to the entire body of the HTML document.*/        
+
+
+
+
+
+display: flex;
+        /*When you apply display: flex to the big box (container), you are telling it to use a special set of rules 
+        (flexbox rules) for arranging the smaller boxes (items) inside it.*/
+
+         What does Flexbox do?
+        Flexbox makes it easier to arrange and align the smaller boxes (flex items) inside the big box (flex container). You can control things like:
+
+        How the items line up in a row or column.
+        How much space each item should take up.
+        How the items should be spaced out from each other.
+        How the items should stretch, shrink, or wrap to fit inside the container.       
+
+        Example 
+        <div class="container">
+            <div class="item">Item 1</div>
+            <div class="item">Item 2</div>
+            <div class="item">Item 3</div>
+        </div>
+
+        Now, you apply display: flex to the container:
+        .container {
+            display: flex;
+        }
+
+        What Happens Next?
+            The .container becomes a flex container.
+            The .item elements become flex items.
+            
+
+
+
+
+justify-content: center
+        a CSS property that belongs to the Flexbox layout model. 
+        When applied to a flex container (an element with display: flex; or display: inline-flex;), it aligns the flex items along 
+        the main axis (horizontal axis by default) such that they are centered within the container.
+
+
+
+
+Padding
+        the space between the content of an element and its border. 
+        It is a CSS property used to create space inside an element, pushing the content away from the edges of the element's box. 
+        Padding can be applied to all sides of an element (top, right, bottom, left) or individually.
+        Padding; 20px /* Adds 20 pixels of padding to all sides */
+
+
+
+
+box-sizing: border-box;
+        1) Content-Box (Default):
+                When box-sizing: content-box; (or when no box-sizing property is set explicitly), the width and height of an element are 
+                calculated like this:
+
+                Width: Content width + padding + border (if any)
+                Height: Content height + padding + border (if any)
+                
+                This means if you set a width of 300px on an element with 20px padding and a 2px border, the total width of the element
+                will be 324px (300px + 20px + 2px).
+
+        2) Border-Box:
+                When box-sizing: border-box; is applied, the width and height of the element include the padding and border sizes:
+                
+                Width: Total width including content width, padding, and border.
+                Height: Total height including content height, padding, and border.
+                
+                This simplifies layout calculations because you directly control the entire size of the box.
+                For example, if you set a width of 300px on an element with box-sizing: border-box;, and it has 20px padding and 
+                a 2px border, the element will be exactly 300px wide, including padding and border.
+
+
+
+    
+flex-grow: 1                
+        a CSS property used within a flex container to specify how much a flex item should grow relative to the other flex items
+        inside the same container. It is a part of the Flexbox layout model.
+
+
+
+ 
+<ul id=""> 
+       used to create an unordered list, which is a collection of items where the order of the items does not matter
+       to assign a name to the list by using "id"
+<li> 
+        defines each individual item within a list
+
+
+<div class="">
+        to be used to group multiple elements by using <div>
+        to assign a name to the group defined above by using "class"
+
+<var> 
+        defining a variable 
+
+$(function() { ... });        
+        It signifies that the code inside the function should execute as soon as the DOM (Document Object Model) is fully 
+        loaded and ready for manipulation.
+        
